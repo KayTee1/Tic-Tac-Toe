@@ -7,7 +7,7 @@ class TicTacToeGame:
         self.root.title("Tic-Tac-Toe")
 
         self.current_player = "X"
-        self.board = [" " for _ in range(0)]
+        self.board = [" " for _ in range(9)]
 
         self.buttons = self.create_game_board()
 
@@ -26,7 +26,7 @@ class TicTacToeGame:
         for combo in winning_combinations:
             if self.board[combo[0]] == self.board[combo[1]] == self.board[combo[2]] != " ":
                 return self.board[combo[0]]
-            return None
+        return None
 
     def button_click(self, index):
         if self.board[index] == " ":
@@ -48,17 +48,17 @@ class TicTacToeGame:
 
     def create_game_board(self):
         buttons = []
-        for i in range(3):
+        for i in range(9):
             row = i // 3
             col = i % 3
-            button = tk.Button(self.root, text = " ", font=("Helvetica", 24), width=8, height=3,
-                               command = lambda i = i: self.button_clicked(i))
+            button = tk.Button(self.root, text=" ", font=("Helvetica", 24), width=8, height=3,
+                               command=lambda i=i: self.button_click(i))
             button.grid(row=row, column=col)
             buttons.append(button)
         return buttons
 
     def run(self):
-        self.root.mainloop
+        self.root.mainloop()
 
 def main():
     game = TicTacToeGame()
